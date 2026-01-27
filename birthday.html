@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Seema ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-pink: #ff4d6d;
+            --dark-pink: #c9184a;
+            --glass: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            color: white;
+            overflow: hidden;
+            text-align: center;
+            touch-action: none;
+        }
+
+        /* START OVERLAY */
+        .start {
+            position: fixed; inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            z-index: 2000;
+        }
+
+        .start button {
+            padding: 18px 45px;
+            border: none; border-radius: 50px;
+            font-size: 20px; font-weight: 600;
+            background: var(--primary-pink); color: white;
+            cursor: pointer; box-shadow: 0 10px 30px rgba(255, 77, 109, 0.4);
+            transition: 0.3s;
+        }
+
+        /* MAIN CONTAINER */
+        #container {
+            width: 100vw; height: 100vh;
+            opacity: 0; transition: 1.5s ease;
+        }
+
+        .slider {
+            display: flex; width: 600%; height: 100vh;
+            transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .slide {
+            width: 100vw; height: 100vh;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            padding: 20px; box-sizing: border-box;
+        }
+
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            padding: 35px 25px; border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.3);
+            max-width: 350px; width: 90%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        h1 { font-size: 2.2rem; margin: 10px 0; animation: glow 2s infinite alternate; }
+        .date-text { font-size: 5rem; font-weight: 600; line-height: 1; margin: 0; }
+        p { font-size: 1.1rem; line-height: 1.6; font-weight: 300; }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px white; }
+            to { text-shadow: 0 0 25px #ffb6c1; }
+        }
+
+        .photo {
+            width: 160px; height: 160px;
+            border-radius: 50%; object-fit: cover;
+            border: 4px solid white; margin-bottom: 15px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        .next {
+            margin-top: 20px; padding: 12px 30px;
+            border: none; border-radius: 25px;
+            background: white; color: var(--primary-pink);
+            font-weight: 600; cursor: pointer; transition: 0.3s;
+        }
+
+        /* CAKE */
+        .cake { width: 150px; cursor: pointer; transition: 0.3s; margin: 15px 0; }
+        .cake:active { transform: scale(0.9); }
+
+        /* PROPOSAL SECTION */
+        #proposalBtns { margin-top: 30px; height: 120px; width: 100%; position: relative; }
+        .yes-btn { background: #2ecc71 !important; color: white !important; font-size: 1.2rem; }
+        #noBtn { position: absolute; left: 50%; transform: translateX(20px); transition: 0.2s; background: #95a5a6; color: white; }
+
+        /* FINAL OVERLAY */
+        #romanticEnding {
+            position: fixed; inset: 0;
+            background: radial-gradient(circle, #ff4d6d, #800020);
+            display: none; flex-direction: column;
+            justify-content: center; align-items: center;
+            z-index: 3000; opacity: 0; transition: 1s;
+        }
+
+        .heart { position: absolute; pointer-events: none; z-index: 5; animation: fall linear forwards; }
+        @keyframes fall { 0% { transform: translateY(-10vh); opacity: 1; } 100% { transform: translateY(110vh); opacity: 0; } }
+    </style>
+</head>
+<body>
+
+<div class="start">
+    <h2 style="margin-bottom: 25px; color: white;">Something special for you... ✨</h2>
+    <button onclick="start()">Tap to Open 💖</button>
+</div>
+
+<div id="container">
+    <div class="slider" id="slider">
+        
+        <div class="slide">
+            <div class="card">
+                <p style="margin:0;">Saal ka sabse pyara din...</p>
+                <h1 class="date-text">27</h1>
+                <h2 style="letter-spacing: 5px; margin-top:0;">JANUARY</h2>
+                <div style="height:2px; background:white; width:60%; margin:15px auto;"></div>
+                <p>Ye sirf ek date nahi hai, ye wo din hai jab is duniya mein <b>meri favorite person</b> aayi thi! Happy Birthday Seema! 🎂</p>
+                <button class="next" onclick="nextSlide()">Aage Chalo ➜</button>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="card">
+                <img src="Seema1.jpeg" class="photo">
+                <p>Jab se tum meri life mein aayi ho, har din thoda zyada special lagta hai. Pata nahi kaise, par tumhare bina ab sab adhura sa lagta hai. ❤️</p>
+                <button class="next" onclick="nextSlide()">Next ➜</button>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="card">
+                <img src="Seema2.jpeg" class="photo">
+                <p>Tumhari wo smile, tumhari baatein aur tumhara wo be-wajah gussa karna... Main har cheez ka fan hoon. Tum meri "Happy Place" ho Seema. ✨🌸</p>
+                <button class="next" onclick="nextSlide()">One More... ➜</button>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="card">
+                <img src="Seema3.jpeg" class="photo">
+                <p>Main shayad perfect nahi hoon, par tumhare saath hamesha khada rahunga. Tumhare har dukh mein aur tumhari har khushi mein. You mean the world to me. 🌍❤️</p>
+                <button class="next" onclick="nextSlide()">Wait... ➜</button>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="card">
+                <h2>Ab Cake Cut Karo! 🎂</h2>
+                <img src="cake.png" class="cake" onclick="cutCake()" id="cakeImg">
+                <h3 id="cutText">Tap the cake!</h3>
+                <p id="finalMsg" style="display:none; font-weight:600;">Yay!Happy 20th Birthday My Girl 🎉 20 ko kyu naa ho jao rhoge toh nibbi hee <br>I Love You So Much! 💖</p>
+                <button class="next" onclick="nextSlide()">Last Surprise ➜</button>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="card">
+                <h1>Will you be mine forever? 💍</h1>
+                <p>Kyuki main tumhare bina apni life imagine hi nahi kar sakta...</p>
+                <div id="proposalBtns">
+                    <button class="next yes-btn" onclick="yesClick()">YES 😍</button>
+                    <button id="noBtn" class="next" onmouseover="moveNo()" onclick="moveNo()">NO 🙈</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="romanticEnding">
+    </div>
+
+<audio id="music" loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    let slide = 0;
+    const totalSlides = 6;
+
+    function start() {
+        document.querySelector('.start').style.opacity = '0';
+        setTimeout(() => {
+            document.querySelector('.start').style.display = 'none';
+            document.getElementById('container').style.opacity = '1';
+        }, 500);
+        document.getElementById('music').play().catch(e => console.log("Music needs interaction"));
+        startHearts();
+    }
+
+    function nextSlide() {
+        if (slide < totalSlides - 1) {
+            slide++;
+            updateSlider();
+        }
+    }
+
+    function updateSlider() {
+        document.getElementById('slider').style.transform = `translateX(-${slide * 100}vw)`;
+    }
+
+    function startHearts() {
+        setInterval(() => {
+            const h = document.createElement('div');
+            h.className = 'heart';
+            h.innerHTML = ['❤️','💖','✨','🌸'][Math.floor(Math.random()*4)];
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            h.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 5000);
+        }, 400);
+    }
+
+    function cutCake() {
+        document.getElementById('cakeImg').style.transform = "scale(1.2) rotate(10deg)";
+        document.getElementById('cutText').innerHTML = "Cake Cut Ho Gaya! 🎂🎉";
+        document.getElementById('finalMsg').style.display = "block";
+        confettiBlast();
+    }
+
+    function moveNo() {
+        const btn = document.getElementById("noBtn");
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 50);
+        btn.style.position = 'fixed';
+        btn.style.left = x + "px";
+        btn.style.top = y + "px";
+    }
+
+    function yesClick() {
+        confettiBlast();
+        const ending = document.getElementById('romanticEnding');
+        ending.innerHTML = `
+            <div style="max-width: 85%; padding: 30px; border-radius: 20px; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px);">
+                <h1 style="font-size: 2.5rem; color: #ffb6c1;">I Love You Seema! ❤️</h1>
+                <p style="font-size: 1.2rem; line-height: 1.6;">
+                    Aaj 27 January hai, aur main bas itna kehna chahta hoon ki... <br><br>
+                    Tum meri zindagi ki sabse khoobsurat kahani ho. Waada hai mera, agle saal isi date pe hum isse bhi badi khushi mana rahe honge. <br><br>
+                    <b>You are mine, today, tomorrow and forever.</b>
+                </p>
+                <div style="font-size: 50px;">💍✨❤️</div>
+            </div>
+        `;
+        ending.style.display = 'flex';
+        setTimeout(() => ending.style.opacity = '1', 100);
+    }
+
+    function confettiBlast() {
+        for(let i=0; i<80; i++) {
+            const c = document.createElement('div');
+            c.style.position = 'fixed';
+            c.style.width = '10px';
+            c.style.height = '10px';
+            c.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 50%)`;
+            c.style.left = Math.random() * 100 + 'vw';
+            c.style.top = '-10px';
+            c.style.zIndex = '4000';
+            c.animate([
+                { transform: 'translateY(0) rotate(0)', opacity: 1 },
+                { transform: `translateY(100vh) rotate(${Math.random()*720}deg)`, opacity: 0 }
+            ], { duration: 2000 + Math.random()*2000 });
+            document.body.appendChild(c);
+            setTimeout(() => c.remove(), 4000);
+        }
+    }
+
+    // Swipe Support
+    let touchStartX = 0;
+    document.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+    document.addEventListener('touchend', e => {
+        let touchEndX = e.changedTouches[0].screenX;
+        if (touchStartX - touchEndX > 60 && slide < totalSlides - 1) nextSlide();
+        if (touchEndX - touchStartX > 60 && slide > 0) { slide--; updateSlider(); }
+    });
+</script>
+
+</body>
+</html>
