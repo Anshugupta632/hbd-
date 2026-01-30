@@ -3,11 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <meta property="og:title" content="A Special Surprise for Seema ❤️">
-    <meta property="og:description" content="27 Jan is here! Click to open ✨">
-    <meta property="og:image" content="Seema1.jpeg">
-
     <title>Happy Birthday Seema ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
@@ -21,32 +16,31 @@
         body, html {
             margin: 0; padding: 0; width: 100%; height: 100%;
             font-family: 'Poppins', sans-serif;
-            background: #000; /* Dark background for neon effect */
-            overflow: hidden; touch-action: pan-y;
+            background: #000; overflow: hidden; touch-action: pan-y;
         }
 
-        /* Particle Canvas */
-        #particleCanvas {
-            position: fixed; inset: 0; z-index: 1;
-        }
-
-        /* Background Glow */
-        .bg-glow {
-            position: fixed; inset: 0;
-            background: radial-gradient(circle at center, #ff758c 0%, #000 100%);
-            opacity: 0.6; z-index: 0;
-        }
-
-        /* Loader */
+        /* LOADER SECTION */
         #loader {
             position: fixed; inset: 0; background: #000;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            z-index: 5000; transition: 1s;
+            z-index: 5000; transition: 0.5s;
         }
-        .heart-beat { font-size: 60px; animation: beat 0.8s infinite; }
-        @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+        
+        /* Loading Spinner */
+        .spinner {
+            width: 50px; height: 50px;
+            border: 5px solid var(--glass);
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* Start Overlay */
+        /* Background */
+        #particleCanvas { position: fixed; inset: 0; z-index: 1; }
+        .bg-glow { position: fixed; inset: 0; background: radial-gradient(circle at center, #ff758c 0%, #000 100%); opacity: 0.6; z-index: 0; }
+
+        /* Overlays */
         .start {
             position: fixed; inset: 0; background: rgba(0,0,0,0.9);
             display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -58,15 +52,9 @@
             color: white; cursor: pointer; box-shadow: 0 0 20px var(--primary);
         }
 
-        /* Container */
         #container { position: relative; width: 100vw; height: 100vh; z-index: 10; opacity: 0; transition: 1.5s; }
-
         .slider { display: flex; width: 600%; height: 100vh; transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
-
-        .slide {
-            width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center;
-            flex-shrink: 0; padding: 20px; box-sizing: border-box;
-        }
+        .slide { width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; flex-shrink: 0; padding: 20px; box-sizing: border-box; }
 
         .card {
             background: var(--glass); backdrop-filter: blur(15px);
@@ -81,208 +69,120 @@
 
         h1 { font-family: 'Dancing Script', cursive; font-size: 3rem; margin: 0; color: var(--accent); }
         .date-text { font-size: 5rem; font-weight: 600; margin: 0; text-shadow: 0 0 15px var(--primary); }
-        
-        .photo {
-            width: 180px; height: 180px; border-radius: 50%;
-            object-fit: cover; border: 4px solid white;
-            margin: 20px 0; box-shadow: 0 0 20px var(--primary);
-        }
-
+        .photo { width: 170px; height: 170px; border-radius: 50%; object-fit: cover; border: 4px solid white; margin: 20px 0; box-shadow: 0 0 20px var(--primary); }
         .typing-text { min-height: 60px; font-size: 1.1rem; line-height: 1.6; }
 
-        .next {
-            margin-top: 25px; padding: 12px 35px; border: none; border-radius: 25px;
-            background: white; color: var(--primary); font-weight: 600; cursor: pointer;
-        }
+        .next { margin-top: 25px; padding: 12px 35px; border: none; border-radius: 25px; background: white; color: var(--primary); font-weight: 600; cursor: pointer; }
 
         #romanticEnding {
             position: fixed; inset: 0; background: #000;
-            display: none; flex-direction: column; justify-content: center; align-items: center;
-            z-index: 3000; opacity: 0; transition: 2s;
+            display: flex; opacity: 0; pointer-events: none; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 3000; transition: 1.5s;
         }
     </style>
 </head>
 <body>
 
 <div id="loader">
-    <div class="heart-beat">❤️</div>
-    <p style="color:white; letter-spacing: 2px;">IQ Level: Brilliantly Emotional...</p>
+    <div class="spinner"></div>
+    <p style="color:white; letter-spacing: 2px; margin-top: 15px;">Loading Surprise...</p>
 </div>
 
 <canvas id="particleCanvas"></canvas>
 <div class="bg-glow"></div>
 
 <div class="start">
-    <h1 style="color:white; margin-bottom: 30px;">For You, Seema... ❤️</h1>
-    <button onclick="start()">Open Your World ✨</button>
+    <h1 style="color:white; margin-bottom: 30px; text-align: center;">Something special for you, Seema... ❤️</h1>
+    <button onclick="start()">Open Surprise ✨</button>
 </div>
 
 <div id="container">
     <div class="slider" id="slider">
-        <div class="slide">
-            <div class="card">
-                <h1 class="date-text">27</h1>
-                <h2 style="letter-spacing: 8px;">JANUARY</h2>
-                <p class="typing-text" id="type1"></p>
-                <button class="next" onclick="nextSlide()">Aage Chalo ➜</button>
-            </div>
-        </div>
+        <div class="slide"><div class="card"><h1 class="date-text">27</h1><h2 style="letter-spacing: 8px;">JANUARY</h2><p class="typing-text" id="type1"></p><button class="next" onclick="nextSlide()">Aage Chalo ➜</button></div></div>
+        <div class="slide"><div class="card"><img src="Seema1.jpeg" class="photo"><p class="typing-text" id="type2"></p><button class="next" onclick="nextSlide()">Next ➜</button></div></div>
+        <div class="slide"><div class="card"><img src="Seema2.jpeg" class="photo"><p class="typing-text" id="type3"></p><button class="next" onclick="nextSlide()">Next ➜</button></div></div>
+        <div class="slide"><div class="card"><img src="Seema3.jpeg" class="photo"><p class="typing-text" id="type4"></p><button class="next" onclick="nextSlide()">Next ➜</button></div></div>
+        <div class="slide"><div class="card"><h1>Cake Time! 🎂</h1><img src="cake.png" style="width:150px; cursor:pointer;" onclick="cutCake()" id="cakeImg"><p id="finalMsg" style="display:none; margin-top:10px; font-weight:600;">Happy 20th Birthday! 🎉 20 ki kyu na ho jao, rahoge toh nibbi hi! 😂 ❤️</p><button class="next" onclick="nextSlide()">Final Surprise ➜</button></div></div>
 
         <div class="slide">
             <div class="card">
-                <img src="Seema1.jpeg" class="photo">
-                <p class="typing-text" id="type2"></p>
-                <button class="next" onclick="nextSlide()">Next ➜</button>
-            </div>
-        </div>
-
-        <div class="slide">
-            <div class="card">
-                <img src="Seema2.jpeg" class="photo">
-                <p class="typing-text" id="type3"></p>
-                <button class="next" onclick="nextSlide()">Next ➜</button>
-            </div>
-        </div>
-
-        <div class="slide">
-            <div class="card">
-                <img src="Seema3.jpeg" class="photo">
-                <p class="typing-text" id="type4"></p>
-                <button class="next" onclick="nextSlide()">Next ➜</button>
-            </div>
-        </div>
-
-        <div class="slide">
-            <div class="card">
-                <h1>Cake Time! 🎂</h1>
-                <img src="cake.png" style="width:150px; cursor:pointer;" onclick="cutCake()" id="cakeImg">
-                <p id="finalMsg" style="display:none; font-weight:600;">Happy 20th Birthday! 20 ki ho jao, rahoge toh nibbi hi! 😂 ❤️</p>
-                <button class="next" onclick="nextSlide()">Final Surprise ➜</button>
-            </div>
-        </div>
-
-        <div class="slide">
-            <div class="card">
-                <h1>Always Mine? 💍</h1>
+                <h1>Will you be mine? 💍</h1>
                 <p>Kyunki tumhare bina life 'Error 404' jaisi hai...</p>
-                <button class="next" style="background: #2ecc71; color:white;" onclick="yesClick()">YES 😍</button>
-                <button id="noBtn" class="next" onmouseover="moveNo()" style="background:#95a5a6; color:white; position:absolute;">NO 🙈</button>
+                <button class="next" style="background: #2ecc71; color:white; width: 120px;" onclick="yesClick()">YES 😍</button>
+                <button id="noBtn" class="next" onmouseover="moveNo()" onclick="moveNo()" style="background:#95a5a6; color:white; width: 120px;">NO 🙈</button>
+                <p id="noMsg" style="color: #ffb6c1; margin-top: 20px; font-weight: 600;"></p>
             </div>
         </div>
     </div>
 </div>
 
 <div id="romanticEnding">
-    <h1 style="font-size: 4rem;">❤️ I Love You ❤️</h1>
-    <p style="padding:20px; font-size: 1.2rem;">You are my today, my tomorrow, and my forever Seema.</p>
+    <h1 style="font-size: 3.5rem; color: #ffb6c1;">I Love You Seema! ❤️</h1>
+    <p style="padding:20px; font-size: 1.2rem; color: white;">You are my today, my tomorrow, and my forever.</p>
 </div>
 
 <audio id="music" loop><source src="song.mp3" type="audio/mpeg"></audio>
 
 <script>
-    // Particle System (IQ Touch)
+    // Particle background
     const canvas = document.getElementById('particleCanvas');
     const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
     let particles = [];
     class Particle {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 3 + 1;
-            this.speedX = Math.random() * 1 - 0.5;
-            this.speedY = Math.random() * 1 - 0.5;
-            this.color = `rgba(255, 182, 193, ${Math.random() * 0.5})`;
-        }
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-            if (this.x > canvas.width) this.x = 0;
-            if (this.x < 0) this.x = canvas.width;
-            if (this.y > canvas.height) this.y = 0;
-            if (this.y < 0) this.y = canvas.height;
-        }
-        draw() {
-            ctx.fillStyle = this.color;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
+        constructor() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.size = Math.random()*2+1; this.speedX = Math.random()*0.5-0.25; this.speedY = Math.random()*0.5-0.25; this.color = 'rgba(255,182,193,0.5)'; }
+        update() { this.x += this.speedX; this.y += this.speedY; if(this.x > canvas.width) this.x=0; if(this.y > canvas.height) this.y=0; }
+        draw() { ctx.fillStyle = this.color; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fill(); }
+    }
+    for(let i=0; i<80; i++) particles.push(new Particle());
+    function animate() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(animate); }
+    animate();
+
+    // Typewriter
+    const msgs = ["Ye wo din hai jab meri favorite person ne is duniya mein entry mari thi! 🎂", "Tumhare aane se meri life me colors bhar gaye hain. Tum meri sukoon ho Seema. ❤️", "Tumhari baatein aur tumhara gussa... Main har cheez ka fan hoon! ✨🌸", "Main shayad perfect nahi hoon, par tumhare liye hamesha khada rahunga. 🌍❤️"];
+    function typeWriter(text, id) {
+        let i = 0; const el = document.getElementById(id); el.innerHTML = "";
+        function t() { if(i<text.length){ el.innerHTML += text.charAt(i); i++; setTimeout(t, 50); } } t();
     }
 
-    function initParticles() {
-        for (let i = 0; i < 100; i++) particles.push(new Particle());
-    }
-
-    function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => { p.update(); p.draw(); });
-        requestAnimationFrame(animateParticles);
-    }
-
-    // Typewriter Logic
-    const messages = [
-        "Ye wo din hai jab meri favorite person ne is duniya mein entry mari thi! 🎂",
-        "Tumhare aane se meri life me colors bhar gaye hain. Tum meri sukoon ho Seema. ❤️",
-        "Tumhari baatein aur tumhara gussa... Main har cheez ka fan hoon! ✨🌸",
-        "Main shayad perfect nahi hoon, par tumhare liye hamesha khada rahunga. 🌍❤️"
-    ];
-
-    function typeWriter(text, elementId, speed = 50) {
-        let i = 0;
-        const element = document.getElementById(elementId);
-        element.innerHTML = "";
-        function type() {
-            if (i < text.length) {
-                element.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(type, speed);
-            }
-        }
-        type();
-    }
-
-    // Controls
     let slide = 0;
     function start() {
         document.querySelector('.start').style.opacity = '0';
-        setTimeout(() => {
-            document.querySelector('.start').style.display = 'none';
-            document.getElementById('container').style.opacity = '1';
-            typeWriter(messages[0], 'type1');
-        }, 800);
+        setTimeout(() => { document.querySelector('.start').style.display='none'; document.getElementById('container').style.opacity='1'; typeWriter(msgs[0], 'type1'); }, 800);
         document.getElementById('music').play();
     }
 
     function nextSlide() {
-        if (slide < 5) {
-            slide++;
-            document.getElementById('slider').style.transform = `translateX(-${slide * 100}vw)`;
-            if (slide < 4) typeWriter(messages[slide], `type${slide+1}`);
-        }
+        if(slide < 5) { slide++; document.getElementById('slider').style.transform = `translateX(-${slide*100}vw)`; if(slide<4) typeWriter(msgs[slide], `type${slide+1}`); }
     }
 
-    window.onload = () => {
-        initParticles(); animateParticles();
-        setTimeout(() => {
-            document.getElementById('loader').style.opacity = '0';
-            setTimeout(() => document.getElementById('loader').style.display = 'none', 1000);
-        }, 2000);
-    };
+    // LOADER TIME: 3 SECONDS
+    window.onload = () => { setTimeout(() => { document.getElementById('loader').style.opacity='0'; setTimeout(()=>document.getElementById('loader').style.display='none', 500); }, 3000); };
 
-    // Other functions (cutCake, moveNo, yesClick) remain same as previous version but polished...
-    function cutCake() { document.getElementById('finalMsg').style.display = "block"; }
+    function cutCake() { document.getElementById('finalMsg').style.display="block"; }
+
+    // NO BUTTON LOGIC
+    let noCount = 0;
+    const noTexts = [
+        "Please accept na... 🥺",
+        "Aise mat karo please! 😭❤️",
+        "Ek baar 'Yes' bol do na please 🙏✨",
+        "Maaf kardo, but please 'Yes' click karo! 🧸💖"
+    ];
     function moveNo() {
         const btn = document.getElementById("noBtn");
-        btn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+        btn.style.left = Math.random() * (window.innerWidth - 120) + "px";
         btn.style.top = Math.random() * (window.innerHeight - 100) + "px";
+        
+        const msg = document.getElementById("noMsg");
+        msg.innerHTML = noTexts[noCount % noTexts.length];
+        noCount++;
     }
+
     function yesClick() {
         const end = document.getElementById('romanticEnding');
-        end.style.display = 'flex';
-        setTimeout(() => end.style.opacity = '1', 100);
+        end.style.pointerEvents = 'auto';
+        end.style.opacity = '1';
     }
 </script>
 </body>
